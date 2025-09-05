@@ -14,25 +14,29 @@
                 <div class="upper-panel">
                     <div class="onlineCoursePrizeSection">
                         <p style="font-size: 30px; color: #006eff; font-weight: bold;">Online Courses</p>
-                        <p class="onlineCoursedisplay"></p>
+                        <p class="onlineCourseDisplayPrizeName"></p>
+                        <p class="onlineCourseDisplayTagName"></p>
                         <button class="onlineCourselotteryButton">Pick a prize now!</button>
                     </div>
                     <div class="prizeCount">
                         <p>Prize remaining:</p>&nbsp;
                         <p class="onlineCoursetotalNumber"></p>
                     </div>
+                    <button class="onlineCourseUndoButton">Undo</button> <!-- Add this button -->
                 </div>
 
                 <div class="lower-panel">
                     <div class="stampCollectionPrizeSection">
                         <p style="font-size: 30px; color: #4A90E2; font-weight: bold;">Stamp Collection</p>
-                        <p class="stampCollectiondisplay"></p>
+                        <p class="stampCollectionDisplayPrizeName"></p>
+                        <p class="stampCollectionDisplayTagName"></p>
                         <button class="stampCollectionlotteryButton">Pick a prize now!</button>
                     </div>
                     <div class="prizeCount">
                         <p>Prize remaining:</p>&nbsp;
                         <p class="stampCollectionTotalNumber"></p>
                     </div>
+                    <button class="stampCollectionUndoButton">Undo</button> <!-- Add this button -->
                 </div>
             </div>
         </div>
@@ -40,121 +44,127 @@
     
     <script>
         //Add variable for large prize/middle prize to keep track of the total number
+        let onlineCoursePrizeHistory = [];
+        let stampCollectionPrizeHistory = [];
         
         let onlineCoursePrize = [
-            { name: "3 in 1 Data Cable", quantity: 1 },
-            { name: "3 in 1 Strectchable Data Cable", quantity: 1 },
-            { name: "ad-lib cloth folder", quantity: 1 },
-            { name: "Cedars A5 Bottle", quantity: 1 },
-            { name: "Cedars Coffee Mug", quantity: 1 },
-            { name: "Collapsible Coffee Cup", quantity: 1 },
-            { name: "Cute Funny Handmade Vegetables", quantity: 9 },
-            { name: "Digital fan", quantity: 1 },
-            { name: "East China Normal University Wooden Coasters (Set)", quantity: 2 },
-            { name: "Elsevier Cup Set", quantity: 1 },
-            { name: "Eslite Coupons", quantity: 11 },
-            { name: "Folding Umbrella", quantity: 2 },
-            { name: "Han Dynasty Style Backflow Fragrance Set", quantity: 1 },
-            { name: "HKLA Stationery Set", quantity: 1 },
-            { name: "HKTDC Wireless Charger", quantity: 1 },
-            { name: "HKU Music Library Wind Chimes", quantity: 1 },
-            { name: "Insulate Bag", quantity: 1 },
-            { name: "Laptop Case", quantity: 2 },
-            { name: "Lucky package", quantity: 2 },
-            { name: "Metal Feather Bookmark + Notebook", quantity: 2 },
-            { name: "Mini LED Book Lamp", quantity: 2 },
-            { name: "Mobile Phone Holder", quantity: 8 },
-            { name: "Mouse plushie", quantity: 1 },
-            { name: "Notebook", quantity: 18 },
-            { name: "Panda Lego", quantity: 18 },
-            { name: "Pouch (Elsevier)", quantity: 1 },
-            { name: "Power Bank", quantity: 2 },
-            { name: "Puzzle", quantity: 4 },
-            { name: "rabbit light", quantity: 6 },
-            { name: "Relax Kuma Mug", quantity: 1 },
-            { name: "Rhino plushie", quantity: 1 },
-            { name: "SAGE bunny plushie", quantity: 2 },
-            { name: "Small Bag (SAGE)", quantity: 1 },
-            { name: "Starbucks Coupons", quantity: 2 },
-            { name: "Stationery set", quantity: 1 },
-            { name: "Tiger plushie", quantity: 1 },
-            { name: "Tote Bag", quantity: 18 },
-            { name: "Towel", quantity: 4 },
-            { name: "USB", quantity: 1 },
-            { name: "USB Book Reading Light", quantity: 6 },
+            { name: "3 in 1 Data Cable", quantity: 1, tags: "Bags" },
+            { name: "3 in 1 Strectchable Data Cable", quantity: 1, tags: "Electronics" },
+            { name: "ad-lib cloth folder", quantity: 1, tags: "Stationery" },
+            { name: "Cedars A5 Bottle", quantity: 1, tags: "Others" },
+            { name: "Cedars Coffee Mug", quantity: 1, tags: "Others" },
+            { name: "Collapsible Coffee Cup", quantity: 1, tags: "Others"},
+            { name: "Cute Funny Handmade Vegetables", quantity: 9, tags: "Dolls"},
+            { name: "Digital fan", quantity: 1, tags: "Electronics" },
+            { name: "East China Normal University Wooden Coasters (Set)", quantity: 2, tags: "Others" },
+            { name: "Elsevier Cup Set", quantity: 1, tags: "Others" },
+            { name: "Eslite Coupons", quantity: 11, tags: "Coupons" },
+            { name: "Folding Umbrella", quantity: 2, tags: "Others"},
+            { name: "Han Dynasty Style Backflow Fragrance Set", quantity: 1, tags: "Others"},
+            { name: "HKLA Stationery Set", quantity: 1, tags: "Stationery" },
+            { name: "HKTDC Wireless Charger", quantity: 1, tags: "Electronics" },
+            { name: "HKU Music Library Wind Chimes", quantity: 1, tags: "Others" },
+            { name: "Insulate Bag", quantity: 1, tags: "Bag" },
+            { name: "Laptop Case", quantity: 2, tags: "Bag" },
+            { name: "Lucky package", quantity: 2, tags: "Package" },
+            { name: "Metal Feather Bookmark + Notebook", quantity: 2, tags: "Stationery" },
+            { name: "Mini LED Book Lamp", quantity: 2, tags: "Mini LED Book Lamp"},
+            { name: "Mobile Phone Holder", quantity: 8, tags: "Others" },
+            { name: "Mouse plushie", quantity: 1, tags: "Dolls" },
+            { name: "Notebook", quantity: 18, tags: "Stationery"  },
+            { name: "Panda Lego", quantity: 18, tags: "Others" },
+            { name: "Pouch (Elsevier)", quantity: 1, tags: "Bag"},
+            { name: "Power Bank", quantity: 2, tags: "Electronics" },
+            { name: "Puzzle", quantity: 4, tags: "Others" },
+            { name: "rabbit light", quantity: 6, tags: "Electronics" },
+            { name: "Relax Kuma Mug", quantity: 1, tags: "Others" },
+            { name: "Rhino plushie", quantity: 1, tags: "Dolls" },
+            { name: "SAGE bunny plushie", quantity: 2, tags: "Dolls" },
+            { name: "Small Bag (SAGE)", quantity: 1, tags: "Bags" },
+            { name: "Starbucks Coupons", quantity: 2, tags: "Coupons"},
+            { name: "Stationery set", quantity: 1, tags: "Stationery" },
+            { name: "Tiger plushie", quantity: 1, tags: "Dolls" },
+            { name: "Tote Bag", quantity: 18, tags: "Bags" },
+            { name: "Towel", quantity: 4, tags: "Others"},
+            { name: "USB", quantity: 1, tags: "Electronics" },
+            { name: "USB Book Reading Light", quantity: 6, tags: "Electronics"},
         ]
 
         let stampCollectionPrize = [
-            { name: "Animal/Sushu Labels", quantity: 1 },
-            { name: "Bookmarks", quantity: 4 },
-            { name: "Cell Phone Holder", quantity: 7 },
-            { name: "Coasters", quantity: 2 },
-            { name: "Colorful tapes", quantity: 3 },
-            { name: "East China Normal University Bookmark (Set)", quantity: 2 },
-            { name: "Eco-friendly Bag", quantity: 6 },
-            { name: "Flocked Stickers", quantity: 1 },
-            { name: "HKU Space Community College Staionery Set", quantity: 1 },
-            { name: "HYREAD Beverage Bag", quantity: 1 },
-            { name: "HYREAD Cup Holder Bag", quantity: 2 },
-            { name: "Key chain", quantity: 2 },
-            { name: "Magnet", quantity: 1 },
-            { name: "Memo", quantity: 1 },
-            { name: "Memo pad", quantity: 10 },
-            { name: "Non-woven Bag", quantity: 2 },
-            { name: "Notebook", quantity: 10 },
-            { name: "Notebook", quantity: 2 },
-            { name: "NUS Libraries glasses clothes", quantity: 1 },
-            { name: "Paper tape", quantity: 2 },
-            { name: "Peking University Paper-cutting", quantity: 1 },
-            { name: "Pencil case", quantity: 30 },
-            { name: "Plastic Coaster", quantity: 1 },
-            { name: "Pouch", quantity: 5 },
-            { name: "Small Bag", quantity: 2 },
-            { name: "Small Drawstring Bag", quantity: 3 },
-            { name: "Stress Ball", quantity: 1 },
-            { name: "Taiwan News Postcard", quantity: 1 },
-            { name: "Tote bag", quantity: 4 },
-            { name: "Wooden Bamboo Pen + HKUL A4 Folder", quantity: 56 }
+            { name: "Animal/Sushu Labels", quantity: 1, tags: "Stationery"},
+            { name: "Bookmarks", quantity: 4, tags: "Stationery"},
+            { name: "Cell Phone Holder", quantity: 7, tags: "Others"},
+            { name: "Coasters", quantity: 2, tags: "Others"},
+            { name: "Colorful tapes", quantity: 3, tags: "Stationery"},
+            { name: "East China Normal University Bookmark (Set)", quantity: 2, tags: "Stationery" },
+            { name: "Eco-friendly Bag", quantity: 6, tags: "Bags" },
+            { name: "Flocked Stickers", quantity: 1, tags: "Stationery"},
+            { name: "HKU Space Community College Staionery Set", quantity: 1, tags: "Stationery"},
+            { name: "HYREAD Beverage Bag", quantity: 1, tags: "Bags"},
+            { name: "HYREAD Cup Holder Bag", quantity: 2, tags: "Bags"},
+            { name: "Key chain", quantity: 2, tags: "Others"},
+            { name: "Magnet", quantity: 1, tags: "Others"},
+            { name: "Memo", quantity: 1, tags: "Stationery"},
+            { name: "Memo pad", quantity: 10, tags: "Stationery"},
+            { name: "Non-woven Bag", quantity: 2, tags: "Bags"},
+            { name: "Notebook", quantity: 10, tags: "Stationery" },
+            { name: "Notebook", quantity: 2, tags: "Stationery" },
+            { name: "NUS Libraries glasses clothes", quantity: 1, tags: "Others" },
+            { name: "Paper tape", quantity: 2, tags: "Stationery" },
+            { name: "Peking University Paper-cutting", quantity: 1, tags: "Others" },
+            { name: "Pencil case", quantity: 30, tags: "Stationery" },
+            { name: "Plastic Coaster", quantity: 1, tags: "Others" },
+            { name: "Pouch", quantity: 5, tags: "Bags" },
+            { name: "Small Bag", quantity: 2, tags: "Bags" },
+            { name: "Small Drawstring Bag", quantity: 3, tags: "Bags" },
+            { name: "Stress Ball", quantity: 1, tags: "Others" },
+            { name: "Taiwan News Postcard", quantity: 1, tags: "Stationery" },
+            { name: "Tote bag", quantity: 4, tags: "Bags" },
+            { name: "Wooden Bamboo Pen + HKUL A4 Folder", quantity: 56, tags: "Stationery" }
         ]
 
         window.addEventListener("load", (event) => {
-            if (localStorage.length === 0) {
-                console.log("localStorage is empty.");
-                
-                showOnlineCoursePrizeTotalNumber();
-                showStampCollectionPrizeTotalNumber();
-            } else {
+            // Only load from localStorage if the item exists
+            if (localStorage.getItem("onlineCoursePrize")) {
                 onlineCoursePrize = JSON.parse(localStorage.getItem("onlineCoursePrize"));
-                console.log(onlineCoursePrize);
-
-                showOnlineCoursePrizeTotalNumber();
-                showStampCollectionPrizeTotalNumber();
             }
+            if (localStorage.getItem("stampCollectionPrize")) {
+                stampCollectionPrize = JSON.parse(localStorage.getItem("stampCollectionPrize"));
+            }
+            
+            showOnlineCoursePrizeTotalNumber();
+            showStampCollectionPrizeTotalNumber();
         });
 
         const onlineCourselotteryButton = document.querySelector(".onlineCourselotteryButton");
-        const onlineCoursedisplay = document.querySelector(".onlineCoursedisplay");
+        const onlineCourseDisplayPrizeName = document.querySelector(".onlineCourseDisplayPrizeName");
+        const onlineCourseDisplayTagName = document.querySelector(".onlineCourseDisplayTagName");
         const onlineCoursetotalNumber = document.querySelector(".onlineCoursetotalNumber");
+        const onlineCourseUndoButton = document.querySelector(".onlineCourseUndoButton");
         
-        const stampCollectiondisplay = document.querySelector(".stampCollectiondisplay");
+        const stampCollectionDisplayPrizeName = document.querySelector(".stampCollectionDisplayPrizeName");
+        const stampCollectionDisplayTagName = document.querySelector(".stampCollectionDisplayTagName");
         const stampCollectionlotteryButton = document.querySelector(".stampCollectionlotteryButton");
         const stampCollectionTotalNumber = document.querySelector(".stampCollectionTotalNumber");
+        const stampCollectionUndoButton = document.querySelector(".stampCollectionUndoButton");
 
-        //For online course prize
+        // For online course prize
         function onlineCourseLottery() {
-            onlineCoursedisplay.textContent = "";
+            onlineCourseDisplayPrizeName.textContent = "";
+            onlineCourseDisplayTagName.textContent = "";
 
             setTimeout(() => {
+                // Save the current state BEFORE changing it
+                onlineCoursePrizeHistory.push(JSON.parse(JSON.stringify(onlineCoursePrize)));
+
                 //Generate a random Number and find the prize
                 let ranNum = getRandomIntInclusive(0, onlineCoursePrize.length-1);
                 let prize = onlineCoursePrize[ranNum];
-                console.log(prize);
 
-                //Convert the first word to upper case
-                // prize = convertToUpperCase(prize);
-                
                 //Display the prize name on the screen
-                onlineCoursedisplay.textContent = prize.name;
+                onlineCourseDisplayPrizeName.textContent = prize.name;
+                console.log(onlineCoursePrize)
+                onlineCourseDisplayTagName.textContent = `tag: ${prize.tags}`;
 
                 //Decrease the prize quantity by 1
                 prize.quantity -= 1;
@@ -166,26 +176,25 @@
 
                 //Store the value to localStorage:
                 localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
-                console.log(localStorage);
 
                 //enabled the button
                 onlineCourselotteryButton.disabled = false;
             }, "1000");
         };
 
-        // function convertToUpperCase(prize) {
-        //     prize = prize.name;
-        //     console.log(prize);
-        //     upperCasePrize = prize.split(" ");
-        //     for (let i = 0; i < upperCasePrize.length; i++) {
-        //         if (typeof UppercasePrize !== Number) {
-        //             upperCasePrize[i] = upperCasePrize[i][0].toUpperCase() + upperCasePrize[i].substr(1);
-        //         }
-        //     }
-            
-        //     return upperCasePrize.join(" ");
-        // }
-        
+        function undoOnlineCourse() {
+            if (onlineCoursePrizeHistory.length > 0) {
+                onlineCoursePrize = onlineCoursePrizeHistory.pop();
+                showOnlineCoursePrizeTotalNumber();
+                onlineCourseDisplayPrizeName.textContent = "";
+                onlineCourseDisplayTagName.textContent = "";
+                localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
+            } else {
+                alert("No more steps to undo!");
+            }
+        }
+
+        onlineCourseUndoButton.addEventListener("click", undoOnlineCourse);
 
         function showOnlineCoursePrizeTotalNumber() {
             onlineCoursetotalNumber.textContent = calculateOnlineCoursePrizeTotalNumber();
@@ -206,33 +215,44 @@
 
         //For Stamp Collection Prize
         function stampCollectionPrizeLottery() {
-            stampCollectiondisplay.textContent = "";
+            stampCollectionDisplayPrizeName.textContent = "";
+            stampCollectionDisplayTagName.textContent = "";
 
             setTimeout(() => {
-                //Generate a random Number and find the prize
+                stampCollectionPrizeHistory.push(JSON.parse(JSON.stringify(stampCollectionPrize)));
+
                 let ranNum = getRandomIntInclusive(0, stampCollectionPrize.length-1);
                 let prize = stampCollectionPrize[ranNum];
                 
-                //Display the prize name on the screen
-                stampCollectiondisplay.textContent = prize.name;
+                stampCollectionDisplayPrizeName.textContent = prize.name;
+                stampCollectionDisplayTagName.textContent = `tag: ${prize.tags}`;
 
-                //Decrease the prize quantity by 1
                 prize.quantity -= 1;
                 
-                //Check and remove the item that it's prize quantity is already zero
                 stampCollectionPrize = stampCollectionPrize.filter(item => item.quantity > 0);
 
                 showStampCollectionPrizeTotalNumber();
 
-                //Store the value to localStorage:
-                localStorage.setItem("onlineCoursePrize", JSON.stringify(onlineCoursePrize));
-                console.log(localStorage);
+                localStorage.setItem("stampCollectionPrize", JSON.stringify(stampCollectionPrize));
 
-                //enabled the button
                 stampCollectionlotteryButton.disabled = false;
             }, "1000");
         };
-        
+
+        function undoStampCollection() {
+            if (stampCollectionPrizeHistory.length > 0) {
+                stampCollectionPrize = stampCollectionPrizeHistory.pop();
+                showStampCollectionPrizeTotalNumber();
+                stampCollectionDisplayPrizeName.textContent = "";
+                stampCollectionDisplayTagName.textContent = "";
+                localStorage.setItem("stampCollectionPrize", JSON.stringify(stampCollectionPrize));
+            } else {
+                alert("No more steps to undo!");
+            }
+        }
+
+        stampCollectionUndoButton.addEventListener("click", undoStampCollection);
+                
         function showStampCollectionPrizeTotalNumber() {
             stampCollectionTotalNumber.textContent = calculateStampCollectionPrizeTotalNumber();
         }
@@ -251,13 +271,10 @@
         });
 
         function getRandomIntInclusive(min, max) {
-            //Math.ceil() round up and returns the smallest integer gratern than or equal to a given number
             const minCeiled = Math.ceil(min);
-            //Math.floor() round down the number and return the largest integer less than or equal to a given number
             const maxFloored = Math.floor(max);
-            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+            return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
         }
-
     </script>
 </body>
 </html>
