@@ -48,79 +48,106 @@
         let stampCollectionPrizeHistory = [];
         
         let onlineCoursePrize = [
-            { name: "3 in 1 Data Cable", quantity: 1, tags: "Bags" },
-            { name: "3 in 1 Strectchable Data Cable", quantity: 1, tags: "Electronics" },
-            { name: "ad-lib cloth folder", quantity: 1, tags: "Stationery" },
-            { name: "Cedars A5 Bottle", quantity: 1, tags: "Others" },
-            { name: "Cedars Coffee Mug", quantity: 1, tags: "Others" },
-            { name: "Collapsible Coffee Cup", quantity: 1, tags: "Others"},
-            { name: "Cute Funny Handmade Vegetables", quantity: 9, tags: "Dolls"},
-            { name: "Digital fan", quantity: 1, tags: "Electronics" },
-            { name: "East China Normal University Wooden Coasters (Set)", quantity: 2, tags: "Others" },
-            { name: "Elsevier Cup Set", quantity: 1, tags: "Others" },
-            { name: "Eslite Coupons", quantity: 11, tags: "Coupons" },
-            { name: "Folding Umbrella", quantity: 2, tags: "Others"},
-            { name: "Han Dynasty Style Backflow Fragrance Set", quantity: 1, tags: "Others"},
-            { name: "HKLA Stationery Set", quantity: 1, tags: "Stationery" },
-            { name: "HKTDC Wireless Charger", quantity: 1, tags: "Electronics" },
-            { name: "HKU Music Library Wind Chimes", quantity: 1, tags: "Others" },
-            { name: "Insulate Bag", quantity: 1, tags: "Bag" },
-            { name: "Laptop Case", quantity: 2, tags: "Bag" },
-            { name: "Lucky package", quantity: 2, tags: "Package" },
-            { name: "Metal Feather Bookmark + Notebook", quantity: 2, tags: "Stationery" },
-            { name: "Mini LED Book Lamp", quantity: 2, tags: "Mini LED Book Lamp"},
-            { name: "Mobile Phone Holder", quantity: 8, tags: "Others" },
-            { name: "Mouse plushie", quantity: 1, tags: "Dolls" },
-            { name: "Notebook", quantity: 18, tags: "Stationery"  },
-            { name: "Panda Lego", quantity: 18, tags: "Others" },
-            { name: "Pouch (Elsevier)", quantity: 1, tags: "Bag"},
-            { name: "Power Bank", quantity: 2, tags: "Electronics" },
-            { name: "Puzzle", quantity: 4, tags: "Others" },
-            { name: "rabbit light", quantity: 6, tags: "Electronics" },
-            { name: "Relax Kuma Mug", quantity: 1, tags: "Others" },
-            { name: "Rhino plushie", quantity: 1, tags: "Dolls" },
-            { name: "SAGE bunny plushie", quantity: 2, tags: "Dolls" },
+            { name: "Tote Bag", quantity: 1, tags: "Bags" }, // HKUL 111th anniversary Tote Bag
+            { name: "Laptop Case", quantity: 2, tags: "Bags" },
+            { name: "Tote Bag", quantity: 1, tags: "Bags" }, // Pokemon Tote Bag
+            { name: "Pouch (Elsevier)", quantity: 1, tags: "Bags" },
             { name: "Small Bag (SAGE)", quantity: 1, tags: "Bags" },
-            { name: "Starbucks Coupons", quantity: 2, tags: "Coupons"},
-            { name: "Stationery set", quantity: 1, tags: "Stationery" },
+            { name: "Tote Bag", quantity: 13, tags: "Bags" },
+            { name: "Tote Bag", quantity: 1, tags: "Bags" }, // Zipper Tote Bag
+            { name: "Insulate Bag", quantity: 1, tags: "Bags" },
+            { name: "Tote Bag", quantity: 2, tags: "Bags" }, // HKUL 112th anniversary Tote Bag
+
+            { name: "Starbucks Coupons", quantity: 2, tags: "Coupons" },
+
+            { name: "SAGE bunny plushie", quantity: 2, tags: "Dolls" },
+            { name: "Cute Funny Handmade Vegetables", quantity: 9, tags: "Dolls" },
+            { name: "Mouse plushie", quantity: 1, tags: "Dolls" },
+            { name: "Rhino plushie", quantity: 1, tags: "Dolls" },
             { name: "Tiger plushie", quantity: 1, tags: "Dolls" },
-            { name: "Tote Bag", quantity: 18, tags: "Bags" },
-            { name: "Towel", quantity: 4, tags: "Others"},
+
+            { name: "3 in 1 Data Cable", quantity: 1, tags: "Electronics" },
+            { name: "3 in 1 Strectchable Data Cable", quantity: 1, tags: "Electronics" },
+            { name: "HKTDC Wireless Charger", quantity: 1, tags: "Electronics" },
+            { name: "LED digital display fan (purple)", quantity: 1, tags: "Electronics" },
+            { name: "Mini LED Book Lamp", quantity: 2, tags: "Electronics" },
+            { name: "Power Bank", quantity: 2, tags: "Electronics" },
+            { name: "rabbit light", quantity: 6, tags: "Electronics" },
             { name: "USB", quantity: 1, tags: "Electronics" },
-            { name: "USB Book Reading Light", quantity: 6, tags: "Electronics"},
+            { name: "USB Book Reading Light", quantity: 6, tags: "Electronics" },
+
+            { name: "Cedars Coffee Mug", quantity: 1, tags: "Others" },
+            { name: "Collapsible Coffee Cup", quantity: 1, tags: "Others" },
+            { name: "Elsevier Cup Set", quantity: 1, tags: "Others" },
+            { name: "East China Normal University Wooden Coasters (Set)", quantity: 2, tags: "Others" },
+            { name: "Eslite Coupons", quantity: 11, tags: "Others" },
+            { name: "Han Dynasty Style Backflow Fragrance Set", quantity: 1, tags: "Others" },
+            { name: "HKU Music Library Wind Chimes", quantity: 1, tags: "Others" },
+            { name: "Mobile Phone Holder", quantity: 8, tags: "Others" },
+            { name: "Panda Lego", quantity: 18, tags: "Others" },
+            { name: "Puzzle", quantity: 4, tags: "Others" },
+            { name: "Relax Kuma Mug", quantity: 1, tags: "Others" },
+            { name: "Towel", quantity: 4, tags: "Others" },
+            { name: "(blank)", quantity: 1, tags: "Others" }, // Squeeze ball
+            { name: "Folding Umbrella", quantity: 2, tags: "Others" }, // Folded Umbrella keyword
+
+            { name: "Lucky package", quantity: 1, tags: "package" }, // CNKI Totebag + Blink Bottle
+            { name: "Lucky package", quantity: 1, tags: "package" }, // Video Totebag + Creative Graphic Stickey Notes + 111 coasters + Cedars Notebook (medium)
+
+            { name: "Notebook", quantity: 1, tags: "Stationery" }, // Fudan University Notebook
+            { name: "Notebook", quantity: 1, tags: "Stationery" }, // HKUL 111th anniversary Notebook
+            { name: "Metal Feather Bookmark + Notebook", quantity: 2, tags: "Stationery" },
+            { name: "Notebook", quantity: 4, tags: "Stationery" }, // Notebook (3+1)
+            { name: "Notebook", quantity: 5, tags: "Stationery" }, // Notebook (3+2)
+            { name: "Notebook", quantity: 6, tags: "Stationery" }, // Notebook with Pen (3+3)
+            { name: "Notebook", quantity: 1, tags: "Stationery" }, // OCLC Notebook & Pen
+            { name: "Stationery set", quantity: 1, tags: "Stationery" },
+            { name: "ad-lib cloth folder", quantity: 1, tags: "Stationery" }
         ]
 
         let stampCollectionPrize = [
-            { name: "Animal/Sushu Labels", quantity: 1, tags: "Stationery"},
-            { name: "Bookmarks", quantity: 4, tags: "Stationery"},
-            { name: "Cell Phone Holder", quantity: 7, tags: "Others"},
-            { name: "Coasters", quantity: 2, tags: "Others"},
-            { name: "Colorful tapes", quantity: 3, tags: "Stationery"},
-            { name: "East China Normal University Bookmark (Set)", quantity: 2, tags: "Stationery" },
-            { name: "Eco-friendly Bag", quantity: 6, tags: "Bags" },
-            { name: "Flocked Stickers", quantity: 1, tags: "Stationery"},
-            { name: "HKU Space Community College Staionery Set", quantity: 1, tags: "Stationery"},
-            { name: "HYREAD Beverage Bag", quantity: 1, tags: "Bags"},
-            { name: "HYREAD Cup Holder Bag", quantity: 2, tags: "Bags"},
-            { name: "Key chain", quantity: 2, tags: "Others"},
-            { name: "Magnet", quantity: 1, tags: "Others"},
-            { name: "Memo", quantity: 1, tags: "Stationery"},
-            { name: "Memo pad", quantity: 10, tags: "Stationery"},
-            { name: "Non-woven Bag", quantity: 2, tags: "Bags"},
-            { name: "Notebook", quantity: 10, tags: "Stationery" },
-            { name: "Notebook", quantity: 2, tags: "Stationery" },
-            { name: "NUS Libraries glasses clothes", quantity: 1, tags: "Others" },
-            { name: "Paper tape", quantity: 2, tags: "Stationery" },
-            { name: "Peking University Paper-cutting", quantity: 1, tags: "Others" },
-            { name: "Pencil case", quantity: 30, tags: "Stationery" },
-            { name: "Plastic Coaster", quantity: 1, tags: "Others" },
-            { name: "Pouch", quantity: 5, tags: "Bags" },
-            { name: "Small Bag", quantity: 2, tags: "Bags" },
+            // Bags
+            { name: "HYREAD Beverage Bag", quantity: 1, tags: "Bags" },
+            { name: "Small Bag", quantity: 1, tags: "Bags" },
+            { name: "HYREAD Cup Holder Bag", quantity: 2, tags: "Bags" },
+            { name: "Eco-friendly Bag", quantity: 4, tags: "Bags" },
+            { name: "Non-woven Bag", quantity: 1, tags: "Bags" },
+            { name: "Non-woven Bag", quantity: 1, tags: "Bags" },
+            { name: "Pouch", quantity: 3, tags: "Bags" },
             { name: "Small Drawstring Bag", quantity: 3, tags: "Bags" },
-            { name: "Stress Ball", quantity: 1, tags: "Others" },
-            { name: "Taiwan News Postcard", quantity: 1, tags: "Stationery" },
+            { name: "Eco-friendly Bag", quantity: 2, tags: "Bags" }, // Small Eco-friendly Bag
+            { name: "Small Bag", quantity: 1, tags: "Bags" },       // Small Hand Bag
+            { name: "Pouch", quantity: 2, tags: "Bags" },           // Small Pouch
             { name: "Tote bag", quantity: 4, tags: "Bags" },
-            { name: "Wooden Bamboo Pen + HKUL A4 Folder", quantity: 56, tags: "Stationery" }
+            { name: "Pencil case", quantity: 30, tags: "Bags" },    // Transparent mesh pencil case (120*200mm) + pens
+
+            // Others
+            { name: "Stress Ball", quantity: 1, tags: "Others" },   // Cedars Stress Ball
+            { name: "Peking University Paper-cutting", quantity: 1, tags: "Others" },
+            { name: "Plastic Coaster", quantity: 1, tags: "Others" },
+            { name: "Coasters", quantity: 2, tags: "Others" },
+            { name: "Magnet", quantity: 1, tags: "Others" },
+            { name: "NUS Libraries glasses clothes", quantity: 1, tags: "Others" },
+
+            // Stationery
+            { name: "Cell Phone Holder", quantity: 7, tags: "Stationery" },
+            { name: "East China Normal University Bookmark (Set)", quantity: 2, tags: "Stationery" },
+            { name: "Memo", quantity: 1, tags: "Stationery" },      // HKUL 110th anniversary Memo
+            { name: "Memo pad", quantity: 10, tags: "Stationery" },
+            { name: "Notebook", quantity: 8, tags: "Stationery" },
+            { name: "Paper tape", quantity: 2, tags: "Stationery" }, // Shanghai Library Paper tape
+            { name: "Notebook", quantity: 3, tags: "Stationery" },   // Small Notebook (total 3)
+            { name: "Notebook", quantity: 1, tags: "Stationery" },   // Small Notebook (1)
+            { name: "Taiwan News Postcard", quantity: 1, tags: "Stationery" },
+            { name: "Flocked Stickers", quantity: 1, tags: "Stationery" },
+            { name: "Colorful tapes", quantity: 3, tags: "Stationery" },
+            { name: "Bookmarks", quantity: 2, tags: "Stationery" },  // Metal feather Bookmark
+            { name: "Bookmarks", quantity: 1, tags: "Stationery" },  // Bookmarks
+            { name: "HKU Space Community College Staionery Set", quantity: 1, tags: "Stationery" },
+            { name: "Key chain", quantity: 1, tags: "Stationery" },
+            { name: "Key chain", quantity: 1, tags: "Stationery" },  // Eygypt Key Chain
+            { name: "Bookmarks", quantity: 1, tags: "Stationery" },  // Tree University bookmarks
+            { name: "Animal/Sushu Labels", quantity: 1, tags: "Stationery" }
         ]
 
         window.addEventListener("load", (event) => {
@@ -164,7 +191,7 @@
                 //Display the prize name on the screen
                 onlineCourseDisplayPrizeName.textContent = prize.name;
                 console.log(onlineCoursePrize)
-                onlineCourseDisplayTagName.textContent = `tag: ${prize.tags}`;
+                onlineCourseDisplayTagName.textContent = `Tag: ${prize.tags}`;
 
                 //Decrease the prize quantity by 1
                 prize.quantity -= 1;
@@ -225,7 +252,7 @@
                 let prize = stampCollectionPrize[ranNum];
                 
                 stampCollectionDisplayPrizeName.textContent = prize.name;
-                stampCollectionDisplayTagName.textContent = `tag: ${prize.tags}`;
+                stampCollectionDisplayTagName.textContent = `Tag: ${prize.tags}`;
 
                 prize.quantity -= 1;
                 
